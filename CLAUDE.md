@@ -49,7 +49,17 @@ Ask for confirmation or adjustments before generating.
 4. Compose the complete blueprint filling every section. When generating Section 9 (Build Order), include the Build Efficiency Guidelines. When generating Section 15 (CLAUDE.md), include The Foreman section (universal rules + archetype-specific additions) and the Tool Call Awareness section.
 5. Read `knowledge/blueprint-checklist.md` — verify the blueprint passes all applicable checks before saving. Fix any gaps.
 6. Write to `output/<project-name>-blueprint.md`
-7. Present a summary to the user with the file path
+7. Proceed to Phase 5.
+
+### Phase 5: AUDIT
+
+Read `knowledge/audit-protocol.md`. Audit the generated blueprint:
+
+1. **Source fidelity** (if DDS/PRD was provided): cross every module, field, enum, and business rule from the source against the blueprint. Flag anything missing or mismatched.
+2. **Internal consistency**: verify stack matches directory structure, data model matches SQL, routes match controllers, design system values match CLAUDE.md.
+3. **Completeness**: no placeholders, all 16 sections filled, build order has specific deliverables.
+
+Present audit results as a table. Fix high-severity issues before delivering. Present summary to user.
 
 ---
 

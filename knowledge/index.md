@@ -42,3 +42,4 @@ Read this file FIRST in Phase 2 and Phase 4 to decide which files to load. Only 
 | `hybrid-patterns.md` | Phase 1 — when project spans multiple archetypes. How to merge stacks and build orders. |
 | `blueprint-checklist.md` | Phase 4 — QA gate before saving the blueprint. |
 | `skills-registry.md` | Phase 4 — mapping Claude Code skills to blueprint sections. |
+| `audit-protocol.md` | Phase 5 — audit blueprint against source document and internal consistency. |

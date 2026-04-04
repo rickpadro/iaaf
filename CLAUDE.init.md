@@ -62,7 +62,20 @@ Ask for confirmation or adjustments before generating.
 5. Read `.iaaf/knowledge/blueprint-checklist.md` — verify completeness. Fix gaps.
 6. Write the blueprint to `.iaaf/output/<project-name>-blueprint.md`
 7. **Write the CLAUDE.md from Section 15 directly to `./CLAUDE.md`** — this REPLACES this file, switching from design mode to build mode.
-8. Present a summary. Tell the user: "Blueprint saved. CLAUDE.md updated. Close and reopen Claude Code to start building."
+8. Proceed to Phase 5.
+
+### Phase 5: AUDIT
+
+Read `.iaaf/knowledge/audit-protocol.md`. Audit the generated blueprint:
+
+1. **Source fidelity** (if DDS/PRD was provided): cross every module, field, enum, and business rule from the source against the blueprint. Flag anything missing or mismatched.
+2. **Internal consistency**: verify stack matches directory structure, data model matches SQL, routes match controllers, design system values match CLAUDE.md.
+3. **Completeness**: no placeholders, all 16 sections filled, build order has specific deliverables.
+
+Present the audit results as a table. Then:
+- **PASS**: Deliver as-is.
+- **PASS WITH NOTES**: Deliver with notes. Ask if user wants fixes.
+- **NEEDS REVISION**: Fix issues in the blueprint, update the CLAUDE.md, then re-present.
 
 ---
 
