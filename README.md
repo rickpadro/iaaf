@@ -178,28 +178,36 @@ claude
 ```bash
 cd ~/my-existing-project
 git clone https://github.com/rickpadro/iaaf.git .iaaf
+rename CLAUDE.md CLAUDE.project.md
 copy .iaaf\CLAUDE.improve.md CLAUDE.md
 claude
 # IAAF scans your codebase, diagnoses issues, generates improvement plan.
+# When done: rename CLAUDE.project.md CLAUDE.md
 ```
 
 ### Example: Add Feature
 
 ```bash
 cd ~/my-existing-project
+rename CLAUDE.md CLAUDE.project.md
 copy .iaaf\CLAUDE.extend.md CLAUDE.md
 claude
 # Describe the feature. IAAF designs it to fit your existing architecture.
+# When done: rename CLAUDE.project.md CLAUDE.md
 ```
 
 ### Example: Fix a Bug
 
 ```bash
 cd ~/my-existing-project
+rename CLAUDE.md CLAUDE.project.md
 copy .iaaf\CLAUDE.fix.md CLAUDE.md
 claude
 # Describe the bug. IAAF diagnoses and fixes it surgically.
+# When done: rename CLAUDE.project.md CLAUDE.md
 ```
+
+> **Note:** For existing projects, always `rename CLAUDE.md CLAUDE.project.md` first. IAAF reads it automatically and respects your project's existing conventions. When the IAAF session ends, restore it with `rename CLAUDE.project.md CLAUDE.md`.
 
 ---
 
