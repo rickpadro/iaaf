@@ -72,7 +72,7 @@
 
 ---
 
-## 4b. Architecture Diagrams
+### Architecture Diagrams
 
 ### System Architecture
 ```mermaid

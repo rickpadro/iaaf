@@ -46,7 +46,7 @@ The Foreman: injects efficiency rules into the blueprint
 Blueprint.md: complete plan with tech stack, database schema,
               API routes, component hierarchy, build order...
          ↓
-Claude Code: reads the blueprint → builds the entire app (30-40% fewer tokens)
+Claude Code: reads the blueprint → builds the entire app (significantly fewer tokens)
 ```
 
 **You describe the idea. IAAF creates the plan. The Foreman optimizes execution. Claude Code builds it.**
@@ -60,7 +60,7 @@ Every blueprint includes **The Foreman** — a set of behavioral rules embedded 
 - **Test and move on** — when tests pass, moves to the next step without refactoring passing code
 - **Smart consolidation** — groups simple operations into single passes, keeps complex tasks incremental
 
-Result: **30-40% reduction in API costs** during the build phase, without sacrificing code quality. The efficiency rules adapt to each project type — a marketing site gets different optimization rules than a SaaS backend.
+Result: **significant reduction in API costs** during the build phase, without sacrificing code quality. The efficiency rules adapt to each project type — a marketing site gets different optimization rules than a SaaS backend. Actual savings depend on project complexity and conversation length.
 
 ---
 
@@ -142,52 +142,64 @@ Don't see your project type? IAAF adapts — these are starting points, not limi
 ### Installation
 
 ```bash
-# Clone this repo
-git clone https://github.com/rickpadro/iaaf.git
-
-# Open the project in Claude Code
-cd iaaf
-claude
+# From your project directory:
+git clone https://github.com/rickpadro/iaaf.git .iaaf
 ```
 
-That's it. Claude Code reads the `CLAUDE.md` file and becomes IAAF.
+### 4 Modes of Operation
 
-### Usage
+| Mode | Command | For |
+|------|---------|-----|
+| **GREENFIELD** | `copy .iaaf\CLAUDE.init.md CLAUDE.md` | Build a new project from scratch |
+| **IMPROVE** | `copy .iaaf\CLAUDE.improve.md CLAUDE.md` | Fix issues, reduce tech debt, optimize existing project |
+| **EXTEND** | `copy .iaaf\CLAUDE.extend.md CLAUDE.md` | Add a new feature to an existing project |
+| **FIX** | `copy .iaaf\CLAUDE.fix.md CLAUDE.md` | Diagnose and fix a specific bug |
 
-**Step 1:** Tell IAAF what you want to build:
-
-```
-You: I want to build a SaaS for managing restaurant reservations
-     with team accounts, Stripe payments, and a customer-facing booking page.
-```
-
-**Step 2:** Answer the questions (2-3 at a time, conversational).
-
-**Step 3:** Review the proposed architecture. Confirm or adjust.
-
-**Step 4:** IAAF generates your blueprint at `output/<project-name>-blueprint.md`.
-
-**Step 5:** Use the blueprint to build your project:
+Then open Claude Code:
 
 ```bash
-# Create your new project
-mkdir ~/my-restaurant-saas
-cp output/restaurant-saas-blueprint.md ~/my-restaurant-saas/CLAUDE.md
-
-# Open it in Claude Code — it builds everything from the blueprint
-cd ~/my-restaurant-saas
 claude
 ```
 
-### Fast-Track Mode
+### Example: New Project
 
-Don't want to answer many questions? Say:
-
+```bash
+mkdir ~/my-new-saas
+cd ~/my-new-saas
+git clone https://github.com/rickpadro/iaaf.git .iaaf
+copy .iaaf\CLAUDE.init.md CLAUDE.md
+claude
+# Tell IAAF what you want to build. It generates the blueprint.
+# Close and reopen Claude Code to start building.
 ```
-You: Build me a SaaS for restaurant reservations. Just build it.
+
+### Example: Improve Existing Project
+
+```bash
+cd ~/my-existing-project
+git clone https://github.com/rickpadro/iaaf.git .iaaf
+copy .iaaf\CLAUDE.improve.md CLAUDE.md
+claude
+# IAAF scans your codebase, diagnoses issues, generates improvement plan.
 ```
 
-IAAF asks only 3 essential questions and uses smart defaults for everything else.
+### Example: Add Feature
+
+```bash
+cd ~/my-existing-project
+copy .iaaf\CLAUDE.extend.md CLAUDE.md
+claude
+# Describe the feature. IAAF designs it to fit your existing architecture.
+```
+
+### Example: Fix a Bug
+
+```bash
+cd ~/my-existing-project
+copy .iaaf\CLAUDE.fix.md CLAUDE.md
+claude
+# Describe the bug. IAAF diagnoses and fixes it surgically.
+```
 
 ---
 

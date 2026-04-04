@@ -99,7 +99,7 @@ User enters email → Client validates → POST /api/waitlist → Resend sends n
 
 ---
 
-## 4b. Architecture Diagrams
+### Architecture Diagrams
 
 ### System Architecture
 ```mermaid

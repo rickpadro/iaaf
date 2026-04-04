@@ -42,7 +42,7 @@ The Foreman: inyecta reglas de eficiencia en el blueprint
 Blueprint.md: plan completo con tech stack, esquema de base de datos,
               rutas API, jerarquia de componentes, orden de construccion...
          ↓
-Claude Code: lee el blueprint → construye toda la app (30-40% menos tokens)
+Claude Code: lee el blueprint → construye toda la app (menos tokens)
 ```
 
 **Tu describes la idea. IAAF crea el plano. The Foreman optimiza la ejecucion. Claude Code lo construye.**
@@ -56,7 +56,7 @@ Cada blueprint incluye **The Foreman** — reglas de comportamiento integradas e
 - **Testear y avanzar** — cuando los tests pasan, avanza sin refactorizar codigo que ya funciona
 - **Consolidacion inteligente** — agrupa operaciones simples, mantiene tareas complejas de forma incremental
 
-Resultado: **30-40% de reduccion en costos de API** durante la construccion, sin sacrificar calidad.
+Resultado: **reduccion significativa en costos de API** durante la construccion, sin sacrificar calidad. El ahorro real depende de la complejidad del proyecto y la longitud de la conversacion.
 
 ---
 
