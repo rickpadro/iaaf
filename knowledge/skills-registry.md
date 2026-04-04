@@ -18,15 +18,16 @@ Maps available Claude Code skills to blueprint sections. Use this during Phase 4
 | `/web-reader` | Build Order | When project needs web scraping or content extraction | Web page content extraction |
 | `/chrome-bridge-automation` | Build Order | When project automates browser workflows | Vision-driven browser automation |
 
-## Skills The Architect Uses During Design
+## Skills The Architect May Use During Design (optional — only if installed)
 
-| Skill | Phase | Purpose |
-|-------|-------|---------|
-| `/deep-research` | Phase 2 | Compare technologies, research patterns |
-| `/ui-ux-pro-max` | Phase 3 | Design the visual system (colors, fonts, style) |
-| `/find-skills` | Phase 2 | Discover skills to recommend in the blueprint |
-| `/playwright-cli` | Phase 3 | Screenshot reference sites the user mentions |
-| `/chrome-bridge-automation` | Phase 3 | Alternative for reference site analysis (uses user's Chrome with sessions) |
+These skills are NOT required. The Architect works without them. Only use if available in the environment.
+
+| Skill | Phase | Purpose | If not available |
+|-------|-------|---------|-----------------|
+| `/deep-research` | Phase 2 | Compare technologies, research patterns | Use your own knowledge — it's sufficient for most decisions |
+| `/ui-ux-pro-max` | Phase 3 | Design the visual system | Design it yourself: pick colors, fonts, spacing based on project type |
+| `/find-skills` | Phase 2 | Discover skills for the build phase | Skip — recommend skills from this registry instead |
+| `/playwright-cli` | Phase 3 | Screenshot reference sites | Ask user to describe what they like about the reference site |
 
 ## How to Include in Blueprint
 

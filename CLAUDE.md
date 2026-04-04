@@ -31,17 +31,13 @@ Read the matching archetype file from `knowledge/archetypes/` before proceeding 
 
 Read `questions/phase-2-branches.md` — use the section matching the identified archetype. Ask 3-5 targeted questions. Consult `knowledge/index.md` to decide which building blocks to read — only load the ones relevant to the project, not all of them.
 
-**Skill integration during this phase:**
-- Use `/deep-research` when comparing unfamiliar technologies or when the user asks about something you need current data on
-- Use `/find-skills` once to discover skills that would help during the BUILD phase (not design phase)
-
 ### Phase 3: ARCHITECTURE
 
 Read `questions/phase-3-confirmation.md`. Present the proposed tech stack and architecture with clear rationale for each decision. Be opinionated — recommend what you believe is best, explain why.
 
-**Skill integration during this phase:**
-- Use `/ui-ux-pro-max` to design the visual system (colors, typography, spacing, component style) for any project with a frontend
-- If the user mentions a reference site, use `/chrome-bridge-automation` or `/playwright-cli` to screenshot and analyze it
+For projects with a frontend, design the visual system yourself: pick a color palette (with hex values), font pairing, spacing scale, border radius, and overall aesthetic. Base it on the project type and any references the user provides.
+
+Read `knowledge/stack-compatibility.md` to validate the proposed stack.
 
 Ask for confirmation or adjustments before generating.
 
@@ -49,27 +45,11 @@ Ask for confirmation or adjustments before generating.
 
 1. Read `templates/blueprint-template.md`
 2. Read `templates/claude-md-template.md`
-3. Read `knowledge/skills-registry.md`
-4. Read `knowledge/building-blocks/claude-behavior-patterns.md` — select the universal rules + the archetype-specific rules matching the identified project type
-5. Compose the complete blueprint filling every section. When generating Section 9 (Build Order), include the Build Efficiency Guidelines. When generating Section 15 (CLAUDE.md), include The Foreman section (universal rules + archetype-specific additions) and the Tool Call Awareness section.
-6. Read `knowledge/blueprint-checklist.md` — verify the blueprint passes all applicable checks before saving. Fix any gaps.
-7. Write to `output/<project-name>-blueprint.md`
-8. Present a summary to the user with the file path
-
----
-
-## Skill Integration Reference
-
-| Skill | When to Use |
-|-------|-------------|
-| `/deep-research` | Comparing technologies, researching best practices, unfamiliar tools |
-| `/ui-ux-pro-max` | Designing visual system for frontend projects |
-| `/find-skills` | Discovering skills to recommend for the build phase |
-| `/frontend-design` | Do NOT use during design — recommend it in the blueprint for the builder |
-| `/shadcn-ui` | Do NOT use during design — recommend it in the blueprint if shadcn is chosen |
-| `/seo-audit` | Reference in blueprint for marketing sites and content platforms |
-| `/playwright-cli` | Analyzing reference sites the user shares |
-| `/chrome-bridge-automation` | Alternative for analyzing reference sites (uses user's Chrome with sessions) |
+3. Read `knowledge/building-blocks/claude-behavior-patterns.md` — select the universal rules + the archetype-specific rules matching the identified project type
+4. Compose the complete blueprint filling every section. When generating Section 9 (Build Order), include the Build Efficiency Guidelines. When generating Section 15 (CLAUDE.md), include The Foreman section (universal rules + archetype-specific additions) and the Tool Call Awareness section.
+5. Read `knowledge/blueprint-checklist.md` — verify the blueprint passes all applicable checks before saving. Fix any gaps.
+6. Write to `output/<project-name>-blueprint.md`
+7. Present a summary to the user with the file path
 
 ---
 

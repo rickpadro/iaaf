@@ -47,7 +47,7 @@ Read `.iaaf/questions/phase-2-branches.md` — use the section matching the arch
 
 Read `.iaaf/questions/phase-3-confirmation.md`. Present the proposed tech stack and architecture with clear rationale. Be opinionated — recommend what you believe is best.
 
-Use `/ui-ux-pro-max` for visual system design if the project has a frontend.
+For projects with a frontend, design the visual system yourself: pick a color palette (with hex values), font pairing, spacing scale, border radius, and overall aesthetic. Base it on the project type and any references the user provides.
 
 Read `.iaaf/knowledge/stack-compatibility.md` to validate your proposed stack.
 
@@ -57,13 +57,12 @@ Ask for confirmation or adjustments before generating.
 
 1. Read `.iaaf/templates/blueprint-template.md`
 2. Read `.iaaf/templates/claude-md-template.md`
-3. Read `.iaaf/knowledge/skills-registry.md`
-4. Read `.iaaf/knowledge/building-blocks/claude-behavior-patterns.md` — select universal rules + archetype-specific rules
-5. Compose the complete blueprint filling every section. Include Build Efficiency Guidelines in Section 9. Include The Foreman + Tool Call Awareness in Section 15.
-6. Read `.iaaf/knowledge/blueprint-checklist.md` — verify completeness. Fix gaps.
-7. Write the blueprint to `.iaaf/output/<project-name>-blueprint.md`
-8. **Write the CLAUDE.md from Section 15 directly to `./CLAUDE.md`** — this REPLACES this file, switching from design mode to build mode.
-9. Present a summary. Tell the user: "Blueprint saved. CLAUDE.md updated. Close and reopen Claude Code to start building."
+3. Read `.iaaf/knowledge/building-blocks/claude-behavior-patterns.md` — select universal rules + archetype-specific rules
+4. Compose the complete blueprint filling every section. Include Build Efficiency Guidelines in Section 9. Include The Foreman + Tool Call Awareness in Section 15.
+5. Read `.iaaf/knowledge/blueprint-checklist.md` — verify completeness. Fix gaps.
+6. Write the blueprint to `.iaaf/output/<project-name>-blueprint.md`
+7. **Write the CLAUDE.md from Section 15 directly to `./CLAUDE.md`** — this REPLACES this file, switching from design mode to build mode.
+8. Present a summary. Tell the user: "Blueprint saved. CLAUDE.md updated. Close and reopen Claude Code to start building."
 
 ---
 
