@@ -1,13 +1,12 @@
 <p align="center">
-  <h1 align="center">The Architect</h1>
+  <h1 align="center">IAAF</h1>
   <p align="center">
-    <strong>A Claude Code meta-agent that designs complete software blueprints.</strong>
+    <strong>Intelligence Artificial Architect Foreman — A Claude Code meta-agent that designs complete software blueprints.</strong>
   </p>
   <p align="center">
     Describe what you want to build. Get a complete blueprint. Let Claude Code build it for you.
   </p>
   <p align="center">
-    <a href="https://tododeia.com">tododeia.com</a> &middot;
     <a href="README.es.md">Español</a>
   </p>
 </p>
@@ -16,20 +15,20 @@
   <img src="https://img.shields.io/badge/Claude_Code-Agent-blueviolet?style=for-the-badge" alt="Claude Code Agent" />
   <img src="https://img.shields.io/badge/Blueprints-Markdown-blue?style=for-the-badge" alt="Markdown Blueprints" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/by-tododeia.com-black?style=for-the-badge" alt="by tododeia.com" />
+  <img src="https://img.shields.io/badge/by-SinapSYS-black?style=for-the-badge" alt="by SinapSYS Ecosistemas" />
 </p>
 
 ---
 
 # English
 
-## What is The Architect?
+## What is IAAF?
 
 Imagine you want to build a house. Before anyone picks up a hammer, you need a **blueprint** — a detailed plan that shows every room, every wall, every pipe, and every wire. Without it, the builders wouldn't know what to do.
 
-**The Architect does this for software.**
+**IAAF does this for software.**
 
-You open this project in [Claude Code](https://claude.com/claude-code), tell it what you want to build (a website, an app, a SaaS, an API — anything), and The Architect:
+You open this project in [Claude Code](https://claude.com/claude-code), tell it what you want to build (a website, an app, a SaaS, an API — anything), and IAAF:
 
 1. **Asks you smart questions** about your idea
 2. **Designs the entire system** — database, API, frontend, auth, payments, everything
@@ -40,7 +39,7 @@ Think of it like this:
 ```
 You: "I want to build a project management app like Trello"
          ↓
-The Architect: asks questions, designs everything
+IAAF: asks questions, designs everything
          ↓
 The Foreman: injects efficiency rules into the blueprint
          ↓
@@ -50,7 +49,7 @@ Blueprint.md: complete plan with tech stack, database schema,
 Claude Code: reads the blueprint → builds the entire app (30-40% fewer tokens)
 ```
 
-**You describe the idea. The Architect creates the plan. The Foreman optimizes execution. Claude Code builds it.**
+**You describe the idea. IAAF creates the plan. The Foreman optimizes execution. Claude Code builds it.**
 
 ### The Foreman
 
@@ -67,12 +66,12 @@ Result: **30-40% reduction in API costs** during the build phase, without sacrif
 
 ## How It Works
 
-The Architect follows a 4-phase workflow:
+IAAF follows a 4-phase workflow:
 
 ### Phase 1: Discovery
 > "What are you building? Who is it for? How big should it be?"
 
-The Architect asks 2-3 questions to understand your idea. Based on your answers, it classifies your project into one of **6 archetypes** (project types).
+IAAF asks 2-3 questions to understand your idea. Based on your answers, it classifies your project into one of **6 archetypes** (project types).
 
 ### Phase 2: Deep Dive
 > "Do you need user accounts? Payments? Real-time features?"
@@ -82,16 +81,16 @@ Now it asks questions specific to YOUR type of project. It also researches best 
 ### Phase 3: Architecture
 > "Here's what I'd build: Next.js + Supabase + Clerk + Stripe on Vercel..."
 
-The Architect presents the complete tech stack and architecture with reasons for every decision. You confirm or adjust. For frontend projects, it designs a full visual system (colors, fonts, spacing) using `/ui-ux-pro-max`.
+IAAF presents the complete tech stack and architecture with reasons for every decision. You confirm or adjust. For frontend projects, it designs a full visual system (colors, fonts, spacing) using `/ui-ux-pro-max`.
 
 ### Phase 4: Generate
-The Architect produces the final blueprint — a single `.md` file with **16 sections** covering everything Claude Code needs to build your project from zero to deployed.
+IAAF produces the final blueprint — a single `.md` file with **16 sections** covering everything Claude Code needs to build your project from zero to deployed.
 
 ---
 
 ## The Blueprint: 16 Sections
 
-Every blueprint The Architect generates includes:
+Every blueprint IAAF generates includes:
 
 | # | Section | What It Contains |
 |---|---------|-----------------|
@@ -118,7 +117,7 @@ Every blueprint The Architect generates includes:
 
 ## Supported Project Types
 
-The Architect knows how to design **6 types of projects**, each with its own default stack, directory structure, and build order:
+IAAF knows how to design **6 types of projects**, each with its own default stack, directory structure, and build order:
 
 | Type | Examples | Default Stack |
 |------|----------|--------------|
@@ -129,7 +128,7 @@ The Architect knows how to design **6 types of projects**, each with its own def
 | **Internal Tool** | Admin panels, dashboards | Next.js + shadcn/ui + Prisma + Recharts |
 | **Content Platform** | Blogs, docs, CMS | Next.js + Sanity + Algolia + Vercel |
 
-Don't see your project type? The Architect adapts — these are starting points, not limits.
+Don't see your project type? IAAF adapts — these are starting points, not limits.
 
 ---
 
@@ -144,18 +143,18 @@ Don't see your project type? The Architect adapts — these are starting points,
 
 ```bash
 # Clone this repo
-git clone https://github.com/Hainrixz/the-architect.git
+git clone https://github.com/rickpadro/iaaf.git
 
 # Open the project in Claude Code
-cd the-architect
+cd iaaf
 claude
 ```
 
-That's it. Claude Code reads the `CLAUDE.md` file and becomes The Architect.
+That's it. Claude Code reads the `CLAUDE.md` file and becomes IAAF.
 
 ### Usage
 
-**Step 1:** Tell The Architect what you want to build:
+**Step 1:** Tell IAAF what you want to build:
 
 ```
 You: I want to build a SaaS for managing restaurant reservations
@@ -166,7 +165,7 @@ You: I want to build a SaaS for managing restaurant reservations
 
 **Step 3:** Review the proposed architecture. Confirm or adjust.
 
-**Step 4:** The Architect generates your blueprint at `output/<project-name>-blueprint.md`.
+**Step 4:** IAAF generates your blueprint at `output/<project-name>-blueprint.md`.
 
 **Step 5:** Use the blueprint to build your project:
 
@@ -188,15 +187,15 @@ Don't want to answer many questions? Say:
 You: Build me a SaaS for restaurant reservations. Just build it.
 ```
 
-The Architect asks only 3 essential questions and uses smart defaults for everything else.
+IAAF asks only 3 essential questions and uses smart defaults for everything else.
 
 ---
 
 ## Project Structure
 
 ```
-the-architect/
-├── CLAUDE.md                          # The brain — makes Claude become The Architect
+iaaf/
+├── CLAUDE.md                          # The brain — makes Claude become IAAF
 ├── knowledge/
 │   ├── archetypes/                    # 6 project type templates
 │   │   ├── saas-webapp.md             #   SaaS apps
@@ -234,7 +233,7 @@ the-architect/
 
 ## Skills Integration
 
-The Architect leverages Claude Code skills during the design process:
+IAAF leverages Claude Code skills during the design process:
 
 | Skill | Used For |
 |-------|----------|
@@ -261,7 +260,7 @@ Contributions are welcome! You can help by:
 - **Adding new archetypes** — new project types in `knowledge/archetypes/`
 - **Improving building blocks** — better decision matrices, newer tech options
 - **Enhancing the blueprint template** — more sections, better structure
-- **Translating** — help make The Architect accessible in more languages
+- **Translating** — help make IAAF accessible in more languages
 
 ---
 
@@ -271,4 +270,4 @@ MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
-## Built by [tododeia.com](https://tododeia.com)
+## Built by SinapSYS Ecosistemas

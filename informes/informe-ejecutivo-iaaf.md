@@ -1,8 +1,8 @@
-# The Architect — Informe Ejecutivo y Plan de Mejora
+# IAAF — Informe Ejecutivo y Plan de Mejora
 
 > Fecha de revision: 2026-04-02
 > Revisado por: Claude Code (Opus 4.6)
-> Proyecto: [The Architect](https://github.com/Hainrixz/the-architect) por tododeia.com
+> Proyecto: [IAAF](https://github.com/rickpadro/iaaf) por SinapSYS Ecosistemas
 > Licencia: MIT
 
 ---
@@ -11,21 +11,21 @@
 
 ---
 
-## 1. Que es The Architect
+## 1. Que es IAAF
 
-The Architect es un **meta-agente para Claude Code** que actua como consultor senior de arquitectura de software. El flujo es simple:
+IAAF es un **meta-agente para Claude Code** que actua como consultor senior de arquitectura de software. El flujo es simple:
 
 ```
 Usuario describe una idea
        |
-The Architect entrevista al usuario (3 fases)
+IAAF entrevista al usuario (3 fases)
        |
 Genera un blueprint .md de 16 secciones
        |
 Otra instancia de Claude Code construye el proyecto entero desde el blueprint
 ```
 
-**Propuesta de valor:** Eliminar la brecha entre "tengo una idea" y "tengo un plan tecnico completo". El usuario no necesita saber arquitectura de software — The Architect toma las decisiones y las justifica.
+**Propuesta de valor:** Eliminar la brecha entre "tengo una idea" y "tengo un plan tecnico completo". El usuario no necesita saber arquitectura de software — IAAF toma las decisiones y las justifica.
 
 ---
 
@@ -35,7 +35,7 @@ Otra instancia de Claude Code construye el proyecto entero desde el blueprint
 
 | Componente | Archivo | Funcion |
 |---|---|---|
-| System Prompt | `CLAUDE.md` (100 lineas) | Convierte a Claude en The Architect. Define las 4 fases del workflow, 10 reglas no negociables, integracion de skills y estilo conversacional |
+| System Prompt | `CLAUDE.md` (100 lineas) | Convierte a Claude en IAAF. Define las 4 fases del workflow, 10 reglas no negociables, integracion de skills y estilo conversacional |
 
 **Observaciones sobre el CLAUDE.md:**
 - Define 4 fases claras: Discovery, Deep Dive, Architecture, Generate
@@ -127,7 +127,7 @@ Archivo: `knowledge/skills-registry.md`
 
 Mapea 11 skills de Claude Code a secciones del blueprint y fases del workflow:
 
-**Skills usadas durante el diseno (por The Architect):**
+**Skills usadas durante el diseno (por IAAF):**
 - `/deep-research` — Comparar tecnologias en Phase 2
 - `/ui-ux-pro-max` — Disenar sistema visual en Phase 3
 - `/find-skills` — Descubrir skills para recomendar
@@ -587,7 +587,7 @@ Mejoras estructurales que requieren mas diseno y trabajo.
 
 **Archivo nuevo:** `knowledge/blueprint-checklist.md`
 
-Checklist que The Architect verifica antes de entregar el blueprint:
+Checklist que IAAF verifica antes de entregar el blueprint:
 
 ```markdown
 ## Blueprint Completeness Checklist

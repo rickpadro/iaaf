@@ -73,11 +73,7 @@ install_knowledge_base() {
   git clone --depth 1 --branch "$IAAF_BRANCH" "$IAAF_REPO" "$iaaf_home/repo" 2>/dev/null
 
   # Copy only what's needed (not the entire repo)
-  # Handle nested directory structure (the-architect-main/the-architect-main/)
   local source_dir="$iaaf_home/repo"
-  if [ -d "$source_dir/the-architect-main" ]; then
-    source_dir="$source_dir/the-architect-main"
-  fi
 
   cp -r "$source_dir/knowledge" "$iaaf_home/knowledge"
   cp -r "$source_dir/questions" "$iaaf_home/questions"
@@ -103,9 +99,6 @@ update_knowledge_base() {
   git clone --depth 1 --branch "$IAAF_BRANCH" "$IAAF_REPO" "$iaaf_home/repo" 2>/dev/null
 
   local source_dir="$iaaf_home/repo"
-  if [ -d "$source_dir/the-architect-main" ]; then
-    source_dir="$source_dir/the-architect-main"
-  fi
 
   cp -r "$source_dir/knowledge" "$iaaf_home/knowledge"
   cp -r "$source_dir/questions" "$iaaf_home/questions"

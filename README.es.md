@@ -1,13 +1,12 @@
 <p align="center">
-  <h1 align="center">The Architect</h1>
+  <h1 align="center">IAAF</h1>
   <p align="center">
-    <strong>Un meta-agente de Claude Code que diseña blueprints completos de software.</strong>
+    <strong>Intelligence Artificial Architect Foreman — Un meta-agente de Claude Code que diseña blueprints completos de software.</strong>
   </p>
   <p align="center">
     Describe lo que quieres construir. Obtén un blueprint completo. Deja que Claude Code lo construya por ti.
   </p>
   <p align="center">
-    <a href="https://tododeia.com">tododeia.com</a> &middot;
     <a href="README.md">English</a>
   </p>
 </p>
@@ -16,18 +15,18 @@
   <img src="https://img.shields.io/badge/Claude_Code-Agent-blueviolet?style=for-the-badge" alt="Claude Code Agent" />
   <img src="https://img.shields.io/badge/Blueprints-Markdown-blue?style=for-the-badge" alt="Markdown Blueprints" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" alt="MIT License" />
-  <img src="https://img.shields.io/badge/by-tododeia.com-black?style=for-the-badge" alt="by tododeia.com" />
+  <img src="https://img.shields.io/badge/by-SinapSYS-black?style=for-the-badge" alt="by SinapSYS Ecosistemas" />
 </p>
 
 ---
 
-## Que es The Architect?
+## Que es IAAF?
 
 Imagina que quieres construir una casa. Antes de que alguien agarre un martillo, necesitas un **plano** — un plan detallado que muestre cada cuarto, cada pared, cada tuberia y cada cable. Sin el, los constructores no sabrian que hacer.
 
-**The Architect hace esto para software.**
+**IAAF hace esto para software.**
 
-Abres este proyecto en [Claude Code](https://claude.com/claude-code), le dices que quieres construir (un sitio web, una app, un SaaS, una API — lo que sea), y The Architect:
+Abres este proyecto en [Claude Code](https://claude.com/claude-code), le dices que quieres construir (un sitio web, una app, un SaaS, una API — lo que sea), y IAAF:
 
 1. **Te hace preguntas inteligentes** sobre tu idea
 2. **Diseña todo el sistema** — base de datos, API, frontend, autenticacion, pagos, todo
@@ -36,7 +35,7 @@ Abres este proyecto en [Claude Code](https://claude.com/claude-code), le dices q
 ```
 Tu: "Quiero construir una app de gestion de proyectos como Trello"
          ↓
-The Architect: hace preguntas, diseña todo
+IAAF: hace preguntas, diseña todo
          ↓
 The Foreman: inyecta reglas de eficiencia en el blueprint
          ↓
@@ -46,7 +45,7 @@ Blueprint.md: plan completo con tech stack, esquema de base de datos,
 Claude Code: lee el blueprint → construye toda la app (30-40% menos tokens)
 ```
 
-**Tu describes la idea. The Architect crea el plano. The Foreman optimiza la ejecucion. Claude Code lo construye.**
+**Tu describes la idea. IAAF crea el plano. The Foreman optimiza la ejecucion. Claude Code lo construye.**
 
 ### The Foreman
 
@@ -66,7 +65,7 @@ Resultado: **30-40% de reduccion en costos de API** durante la construccion, sin
 ### Fase 1: Descubrimiento
 > "Que estas construyendo? Para quien es? Que tan grande debe ser?"
 
-The Architect hace 2-3 preguntas para entender tu idea. Clasifica tu proyecto en uno de **10 arquetipos**.
+IAAF hace 2-3 preguntas para entender tu idea. Clasifica tu proyecto en uno de **10 arquetipos**.
 
 ### Fase 2: Profundizacion
 > "Necesitas cuentas de usuario? Pagos? Funciones en tiempo real?"
@@ -110,17 +109,17 @@ Produce el blueprint final — un solo archivo `.md` con **16 secciones** cubrie
 ### Instalacion
 
 ```bash
-git clone https://github.com/Hainrixz/the-architect.git
-cd the-architect
+git clone https://github.com/rickpadro/iaaf.git
+cd iaaf
 claude
 ```
 
 ### Uso
 
-**Paso 1:** Dile a The Architect que quieres construir.
+**Paso 1:** Dile a IAAF que quieres construir.
 **Paso 2:** Responde las preguntas (2-3 a la vez).
 **Paso 3:** Revisa la arquitectura propuesta. Confirma o ajusta.
-**Paso 4:** The Architect genera tu blueprint en `output/<nombre-proyecto>-blueprint.md`.
+**Paso 4:** IAAF genera tu blueprint en `output/<nombre-proyecto>-blueprint.md`.
 **Paso 5:** Copia el blueprint como CLAUDE.md en tu nuevo proyecto y abrelo en Claude Code.
 
 ### Modo Rapido
@@ -156,4 +155,4 @@ MIT. Ver [LICENSE](LICENSE).
 
 ---
 
-## Construido por [tododeia.com](https://tododeia.com)
+## Construido por SinapSYS Ecosistemas
