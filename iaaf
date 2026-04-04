@@ -1,0 +1,300 @@
+#!/usr/bin/env bash
+# IAAF — IA Architect Foreman
+# Usage: iaaf <project-directory>
+# Example: iaaf ~/projects/my-new-saas
+
+set -e
+
+# --- Config ---
+IAAF_REPO="${IAAF_REPO:-https://github.com/rickpadro/iaaf.git}"
+IAAF_BRANCH="main"
+
+# --- Colors ---
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+BOLD='\033[1m'
+NC='\033[0m'
+
+# --- Functions ---
+info()  { echo -e "${BLUE}[IAAF]${NC} $1"; }
+success() { echo -e "${GREEN}[IAAF]${NC} $1"; }
+error() { echo -e "${RED}[IAAF]${NC} $1" >&2; }
+
+usage() {
+  echo ""
+  echo -e "${BOLD}IAAF — IA Architect Foreman${NC}"
+  echo ""
+  echo "  Designs complete software blueprints with Claude Code."
+  echo ""
+  echo -e "${BOLD}Usage:${NC}"
+  echo "  iaaf <command> <project-directory>"
+  echo ""
+  echo -e "${BOLD}Commands:${NC}"
+  echo "  init <dir>     Create a new project and start The Architect"
+  echo "  build <dir>    Start building from an existing blueprint"
+  echo "  update         Update IAAF knowledge base to latest version"
+  echo ""
+  echo -e "${BOLD}Examples:${NC}"
+  echo "  iaaf init ~/projects/my-saas"
+  echo "  iaaf build ~/projects/my-saas"
+  echo "  iaaf update"
+  echo ""
+}
+
+check_dependencies() {
+  if ! command -v git &> /dev/null; then
+    error "git is not installed. Install it first."
+    exit 1
+  fi
+  if ! command -v claude &> /dev/null; then
+    error "Claude Code is not installed. Install it from https://claude.ai/claude-code"
+    exit 1
+  fi
+}
+
+get_iaaf_home() {
+  # IAAF knowledge base lives in ~/.iaaf
+  echo "${IAAF_HOME:-$HOME/.iaaf}"
+}
+
+install_knowledge_base() {
+  local iaaf_home
+  iaaf_home=$(get_iaaf_home)
+
+  if [ -d "$iaaf_home/knowledge" ]; then
+    info "Knowledge base already installed at $iaaf_home"
+    return 0
+  fi
+
+  info "Installing IAAF knowledge base to $iaaf_home ..."
+  mkdir -p "$iaaf_home"
+
+  git clone --depth 1 --branch "$IAAF_BRANCH" "$IAAF_REPO" "$iaaf_home/repo" 2>/dev/null
+
+  # Copy only what's needed (not the entire repo)
+  # Handle nested directory structure (the-architect-main/the-architect-main/)
+  local source_dir="$iaaf_home/repo"
+  if [ -d "$source_dir/the-architect-main" ]; then
+    source_dir="$source_dir/the-architect-main"
+  fi
+
+  cp -r "$source_dir/knowledge" "$iaaf_home/knowledge"
+  cp -r "$source_dir/questions" "$iaaf_home/questions"
+  cp -r "$source_dir/templates" "$iaaf_home/templates"
+  cp "$source_dir/CLAUDE.md" "$iaaf_home/CLAUDE.md"
+
+  # Clean up the full clone
+  rm -rf "$iaaf_home/repo"
+
+  success "Knowledge base installed."
+}
+
+update_knowledge_base() {
+  local iaaf_home
+  iaaf_home=$(get_iaaf_home)
+
+  info "Updating IAAF knowledge base..."
+
+  # Remove old and re-install
+  rm -rf "$iaaf_home/knowledge" "$iaaf_home/questions" "$iaaf_home/templates" "$iaaf_home/CLAUDE.md"
+
+  # Temporary clone
+  git clone --depth 1 --branch "$IAAF_BRANCH" "$IAAF_REPO" "$iaaf_home/repo" 2>/dev/null
+
+  local source_dir="$iaaf_home/repo"
+  if [ -d "$source_dir/the-architect-main" ]; then
+    source_dir="$source_dir/the-architect-main"
+  fi
+
+  cp -r "$source_dir/knowledge" "$iaaf_home/knowledge"
+  cp -r "$source_dir/questions" "$iaaf_home/questions"
+  cp -r "$source_dir/templates" "$iaaf_home/templates"
+  cp "$source_dir/CLAUDE.md" "$iaaf_home/CLAUDE.md"
+
+  rm -rf "$iaaf_home/repo"
+
+  success "Knowledge base updated to latest version."
+}
+
+cmd_init() {
+  local project_dir="$1"
+
+  if [ -z "$project_dir" ]; then
+    error "Missing project directory."
+    echo "  Usage: iaaf init <project-directory>"
+    exit 1
+  fi
+
+  # Resolve to absolute path
+  project_dir=$(cd "$(dirname "$project_dir")" 2>/dev/null && pwd)/$(basename "$project_dir") || project_dir="$1"
+
+  local iaaf_home
+  iaaf_home=$(get_iaaf_home)
+
+  # Step 1: Ensure knowledge base is installed
+  install_knowledge_base
+
+  # Step 2: Create project directory
+  if [ -d "$project_dir" ]; then
+    info "Directory $project_dir already exists. Using it."
+  else
+    mkdir -p "$project_dir"
+    info "Created $project_dir"
+  fi
+
+  # Step 3: Set up IAAF in the project
+  mkdir -p "$project_dir/.iaaf"
+
+  # Symlink knowledge base (saves disk, always up to date)
+  ln -sfn "$iaaf_home/knowledge" "$project_dir/.iaaf/knowledge"
+  ln -sfn "$iaaf_home/questions" "$project_dir/.iaaf/questions"
+  ln -sfn "$iaaf_home/templates" "$project_dir/.iaaf/templates"
+
+  # Create output directory
+  mkdir -p "$project_dir/.iaaf/output"
+
+  # Step 4: Generate the project's CLAUDE.md that activates The Architect
+  # This CLAUDE.md points to .iaaf/ for all knowledge files
+  cat > "$project_dir/CLAUDE.md" << 'ARCHITECT_MD'
+# The Architect (IAAF)
+
+You are **The Architect** — a senior software design consultant powered by IAAF (IA Architect Foreman). Your job: interview the user about what they want to build, design the complete architecture, and generate a self-contained blueprint.
+
+You do NOT write code. You design systems and produce blueprints.
+
+**Knowledge base location:** All knowledge files are in `.iaaf/` directory. Read files from there.
+
+---
+
+## Workflow
+
+### Phase 1: DISCOVERY
+
+Read `.iaaf/questions/phase-1-discovery.md`. Ask 2-3 questions conversationally. Classify the project into one of the archetypes listed in `.iaaf/knowledge/index.md`.
+
+Read the matching archetype file from `.iaaf/knowledge/archetypes/` before proceeding.
+
+### Phase 2: DEEP DIVE
+
+Read `.iaaf/knowledge/index.md` to decide which building blocks to load — only the relevant ones.
+Read `.iaaf/questions/phase-2-branches.md` — use the section matching the archetype. Ask 3-5 targeted questions.
+
+### Phase 3: ARCHITECTURE
+
+Read `.iaaf/questions/phase-3-confirmation.md`. Present the proposed tech stack and architecture. Be opinionated. Ask for confirmation.
+
+Use `/ui-ux-pro-max` for visual system design if the project has a frontend.
+
+### Phase 4: GENERATE
+
+1. Read `.iaaf/templates/blueprint-template.md`
+2. Read `.iaaf/templates/claude-md-template.md`
+3. Read `.iaaf/knowledge/skills-registry.md`
+4. Read `.iaaf/knowledge/building-blocks/claude-behavior-patterns.md`
+5. Compose the complete blueprint with all 16 sections + The Foreman + Build Efficiency Guidelines.
+6. Read `.iaaf/knowledge/blueprint-checklist.md` — verify completeness.
+7. Write the blueprint to `.iaaf/output/<project-name>-blueprint.md`
+8. **ALSO write the CLAUDE.md from Section 15 directly to `./CLAUDE.md`** — this REPLACES this file, turning the project from "design mode" into "build mode".
+9. Present a summary to the user.
+
+---
+
+## Non-Negotiable Rules
+
+1. NEVER generate the blueprint before completing Phases 1-3.
+2. Max 3 questions per message. Conversational, not interrogation.
+3. ALWAYS present architecture for confirmation before generating.
+4. Blueprint must be 100% self-contained.
+5. ALWAYS include numbered build order (most critical section).
+6. ALWAYS include complete CLAUDE.md for the target project.
+7. Detect user's language from first message. Use it throughout.
+8. Be opinionated. Recommend, don't list options.
+9. Fast-track mode: if user says "just build it", ask only 3 essential questions.
+10. After generating, REPLACE this CLAUDE.md with the build CLAUDE.md so the user can immediately start building by re-opening Claude Code.
+
+## Conversation Style
+
+- Confident architect, not subservient assistant.
+- "Here's what I'd build" not "Here are your options."
+- Concise. Tables and bullets. No walls of text.
+ARCHITECT_MD
+
+  # Step 5: Add .iaaf to .gitignore
+  if [ ! -f "$project_dir/.gitignore" ]; then
+    echo ".iaaf/" > "$project_dir/.gitignore"
+  elif ! grep -q "\.iaaf/" "$project_dir/.gitignore" 2>/dev/null; then
+    echo ".iaaf/" >> "$project_dir/.gitignore"
+  fi
+
+  # Step 6: Summary
+  echo ""
+  success "IAAF initialized in $project_dir"
+  echo ""
+  echo -e "  ${BOLD}What happened:${NC}"
+  echo "    - Created .iaaf/ with knowledge base (symlinked)"
+  echo "    - Created CLAUDE.md (The Architect is ready)"
+  echo "    - Added .iaaf/ to .gitignore"
+  echo ""
+  echo -e "  ${BOLD}Next step:${NC}"
+  echo -e "    ${GREEN}cd $project_dir && claude${NC}"
+  echo ""
+  echo "  Then tell The Architect what you want to build."
+  echo "  After the blueprint is generated, CLAUDE.md will be"
+  echo "  replaced with build instructions. Re-open Claude Code"
+  echo "  and it will start building your project."
+  echo ""
+}
+
+cmd_build() {
+  local project_dir="$1"
+
+  if [ -z "$project_dir" ]; then
+    error "Missing project directory."
+    echo "  Usage: iaaf build <project-directory>"
+    exit 1
+  fi
+
+  project_dir=$(cd "$project_dir" 2>/dev/null && pwd) || { error "Directory not found: $1"; exit 1; }
+
+  if [ ! -f "$project_dir/CLAUDE.md" ]; then
+    error "No CLAUDE.md found in $project_dir"
+    echo "  Run 'iaaf init $project_dir' first, or make sure a blueprint CLAUDE.md exists."
+    exit 1
+  fi
+
+  info "Opening Claude Code in build mode..."
+  cd "$project_dir" && claude
+}
+
+# --- Main ---
+check_dependencies
+
+case "${1:-}" in
+  init)
+    cmd_init "$2"
+    ;;
+  build)
+    cmd_build "$2"
+    ;;
+  update)
+    update_knowledge_base
+    ;;
+  -h|--help|help)
+    usage
+    ;;
+  "")
+    # No args — if there's an argument that looks like a path, assume init
+    usage
+    ;;
+  *)
+    # If first arg looks like a path, assume init
+    if [[ "$1" == /* ]] || [[ "$1" == ~* ]] || [[ "$1" == .* ]]; then
+      cmd_init "$1"
+    else
+      error "Unknown command: $1"
+      usage
+      exit 1
+    fi
+    ;;
+esac
