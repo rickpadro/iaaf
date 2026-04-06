@@ -1,0 +1,59 @@
+{
+  "mode": "EXTEND",
+  "version": "1.1",
+  "tests": [
+    {
+      "id": "EX-01",
+      "name": "Add payment module to existing CRM",
+      "prompt": "User provides DDS for a Marketing module for their Laravel CRM. Wants email marketing, lead scoring, and campaign management.",
+      "expected_behavior": "Scans CRM codebase, designs extension following existing patterns, uses marketing_ table prefix.",
+      "assertions": [
+        "Reads existing models and controllers to understand patterns",
+        "New tables use marketing_ prefix",
+        "New controllers follow existing naming convention",
+        "New routes follow existing URL pattern",
+        "Migration files are additive (no ALTER on core tables except documented fields)",
+        "References integrations-patterns.md for email sending",
+        "Build order doesn't break existing functionality"
+      ]
+    },
+    {
+      "id": "EX-02",
+      "name": "Add real-time chat to existing app",
+      "prompt": "User wants to add a chat feature to their Next.js SaaS. Users should be able to message each other in real-time.",
+      "expected_behavior": "Scans codebase, proposes real-time solution compatible with existing hosting.",
+      "assertions": [
+        "Checks if hosting supports WebSockets (Vercel doesn't natively)",
+        "Proposes compatible solution (Supabase Realtime, Pusher, Ably)",
+        "New components go in existing component directory structure",
+        "New database table for messages follows existing schema conventions",
+        "Does NOT restructure existing code"
+      ]
+    },
+    {
+      "id": "EX-03",
+      "name": "Respects existing patterns exactly",
+      "prompt": "Existing project uses snake_case routes, Repository pattern, and Form Requests in Laravel.",
+      "expected_behavior": "All new routes, repositories, and form requests follow the exact same pattern.",
+      "assertions": [
+        "New routes use snake_case (not camelCase)",
+        "Creates Repository class if project uses Repository pattern",
+        "Creates Form Request for validation (not inline validation)",
+        "File naming matches existing convention",
+        "Import style matches existing code"
+      ]
+    },
+    {
+      "id": "EX-04",
+      "name": "Uses PROJECT.context.md from previous session",
+      "prompt": "PROJECT.context.md already exists from a previous IMPROVE session.",
+      "expected_behavior": "Reads PROJECT.context.md instead of full SCAN. Faster startup.",
+      "assertions": [
+        "Reads PROJECT.context.md first",
+        "Skips full codebase scan if context is recent",
+        "Uses detected stack and patterns from context file",
+        "Still reads specific files relevant to the new feature"
+      ]
+    }
+  ]
+}

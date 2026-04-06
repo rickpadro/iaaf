@@ -34,7 +34,9 @@ On the first message, present the greeting. Then:
 
 ### Phase 1: SCAN (understand the existing project)
 
-Same scan as IMPROVE mode — read package files, structure, entry points, models, configs, docs. But focus on:
+**Check if `PROJECT.context.md` exists first.** If it does and is recent, read it instead of doing a full scan — only read files specific to the new feature. If it doesn't exist, do a full scan and generate `PROJECT.context.md` (same format as IMPROVE mode).
+
+Focus the scan on:
 
 - **Where does this feature fit** in the current architecture?
 - **What existing code can be reused?** (models, services, components, routes)
@@ -44,7 +46,7 @@ Report:
 
 ```
 Project Summary:
-- Stack: [detected]
+- Stack: [detected or from PROJECT.context.md]
 - Architecture: [pattern]
 - Relevant existing code: [models, services, components the feature will touch]
 - Patterns to follow: [how routes are defined, how components are organized, etc.]
@@ -52,7 +54,21 @@ Project Summary:
 
 ### Phase 2: DESIGN
 
-Consult `.iaaf/knowledge/index.md` for relevant building blocks. Design the feature:
+Consult `.iaaf/knowledge/index.md` and **actively load building blocks based on what the feature requires**:
+
+| If the feature involves | READ |
+|------------------------|------|
+| New database tables | → `.iaaf/knowledge/building-blocks/database-patterns.md` |
+| New API routes | → `.iaaf/knowledge/building-blocks/api-design-patterns.md` |
+| Authentication/authorization | → `.iaaf/knowledge/building-blocks/auth-patterns.md` |
+| Payments/billing | → `.iaaf/knowledge/building-blocks/payments-patterns.md` + `references/stripe-webhook-patterns.md` |
+| Email sending, notifications | → `.iaaf/knowledge/building-blocks/integrations-patterns.md` |
+| File uploads | → `.iaaf/knowledge/building-blocks/integrations-patterns.md` |
+| New UI pages/components | → `.iaaf/knowledge/building-blocks/frontend-patterns.md` |
+| Real-time features | → `.iaaf/knowledge/building-blocks/frontend-patterns.md` (real-time section) |
+| Multi-language support | → `.iaaf/knowledge/building-blocks/i18n-patterns.md` |
+
+Design the feature:
 
 1. **Data model** — new tables/fields needed. How they relate to existing entities.
 2. **Backend** — new routes/controllers/services. Follow existing patterns exactly.

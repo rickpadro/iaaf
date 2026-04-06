@@ -1,0 +1,56 @@
+{
+  "mode": "FIX",
+  "version": "1.1",
+  "tests": [
+    {
+      "id": "FX-01",
+      "name": "Simple bug with clear error",
+      "prompt": "User says: 'Getting 500 error on /api/users. Error log says Column not found: updated_at'",
+      "expected_behavior": "Reads the route handler and model. Finds the missing column or missing timestamp config.",
+      "assertions": [
+        "Reads the specific file handling /api/users",
+        "Reads the User model",
+        "Identifies root cause (timestamps config or missing column)",
+        "Proposes fix with specific file and line",
+        "Does NOT read unrelated files",
+        "Does NOT refactor surrounding code"
+      ]
+    },
+    {
+      "id": "FX-02",
+      "name": "Authentication bug",
+      "prompt": "User says: 'Login works but after 1 hour users get a blank screen. They have to login again.'",
+      "expected_behavior": "Reads auth-related files. Diagnoses token/session expiry issue.",
+      "assertions": [
+        "Reads auth middleware, session config, token refresh logic",
+        "Identifies session/token timeout as root cause",
+        "Fix is specific (change config value or add refresh logic)",
+        "Mentions verification: login, wait for expiry, confirm session persists"
+      ]
+    },
+    {
+      "id": "FX-03",
+      "name": "Complex bug escalates to IMPROVE",
+      "prompt": "User says: 'Everything is slow. Pages take 10+ seconds. All of them.'",
+      "expected_behavior": "This is not a single bug — it's a systemic issue. Recommend switching to IMPROVE mode.",
+      "assertions": [
+        "Recognizes this is not a single bug",
+        "Recommends IMPROVE mode for systematic analysis",
+        "Does NOT attempt to fix everything in FIX mode",
+        "May do a quick check (database indexes, N+1) but flags the scope"
+      ]
+    },
+    {
+      "id": "FX-04",
+      "name": "Fix with side effects warning",
+      "prompt": "User says: 'The delete button on projects doesn't work. Nothing happens when I click it.'",
+      "expected_behavior": "Reads the delete handler and frontend component. Fixes the issue but warns about cascade effects.",
+      "assertions": [
+        "Reads both backend route and frontend component",
+        "Identifies if it's a frontend issue (event handler) or backend (route/controller)",
+        "If fix involves cascade deletes, warns about related data",
+        "Verification includes checking that related data is handled"
+      ]
+    }
+  ]
+}

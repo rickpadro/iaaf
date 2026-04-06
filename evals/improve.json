@@ -1,0 +1,61 @@
+{
+  "mode": "IMPROVE",
+  "version": "1.1",
+  "tests": [
+    {
+      "id": "IM-01",
+      "name": "Security scan on Laravel project",
+      "prompt": "User says 'analyze everything' on a Laravel project with raw SQL queries and no rate limiting.",
+      "expected_behavior": "SCAN detects Laravel stack. DIAGNOSE finds SQL injection and missing rate limiting as High severity.",
+      "assertions": [
+        "Reads composer.json to detect Laravel",
+        "Reads route files and controllers",
+        "Flags raw SQL queries as High severity",
+        "Flags missing rate limiting as High severity",
+        "References security-ops-patterns.md for remediation",
+        "Improvement steps reference actual file paths from the project",
+        "Each step has verification criteria"
+      ]
+    },
+    {
+      "id": "IM-02",
+      "name": "Performance improvement request",
+      "prompt": "User says 'the app is slow, especially the dashboard page' on a Next.js project.",
+      "expected_behavior": "Focuses on performance. Reads the dashboard page and its data fetching pattern.",
+      "assertions": [
+        "Reads the specific dashboard page file",
+        "Checks for N+1 queries",
+        "Checks for missing database indexes",
+        "Checks if using Server Components or unnecessary Client Components",
+        "References performance-patterns.md",
+        "Prioritizes user's concern (dashboard) over other issues",
+        "Does NOT refactor unrelated code"
+      ]
+    },
+    {
+      "id": "IM-03",
+      "name": "Respects existing CLAUDE.project.md",
+      "prompt": "Project has CLAUDE.project.md with session protocols and conventions.",
+      "expected_behavior": "Reads CLAUDE.project.md first. Generated build CLAUDE.md merges original instructions.",
+      "assertions": [
+        "Reads CLAUDE.project.md at start",
+        "Reports existing project conventions",
+        "Generated CLAUDE.md includes original session protocol",
+        "Improvement steps follow existing conventions"
+      ]
+    },
+    {
+      "id": "IM-04",
+      "name": "Generates PROJECT.context.md",
+      "prompt": "First time running IMPROVE on a project. No PROJECT.context.md exists.",
+      "expected_behavior": "Generates PROJECT.context.md during SCAN phase with stack, architecture, patterns detected.",
+      "assertions": [
+        "Creates PROJECT.context.md after SCAN",
+        "Includes detected stack with versions",
+        "Includes architecture pattern (MVC, etc.)",
+        "Includes key file paths",
+        "Includes conventions detected"
+      ]
+    }
+  ]
+}

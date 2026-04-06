@@ -43,3 +43,12 @@ Read this file FIRST in Phase 2 and Phase 4 to decide which files to load. Only 
 | `blueprint-checklist.md` | Phase 4 — QA gate before saving the blueprint. |
 | `skills-registry.md` | Phase 4 — mapping Claude Code skills to blueprint sections. |
 | `audit-protocol.md` | Phase 5 — audit blueprint against source document and internal consistency. |
+
+## Supplementary References (load ONLY when implementing specific features)
+
+| File | When to Load |
+|------|-------------|
+| `building-blocks/references/stripe-webhook-patterns.md` | Implementing Stripe payment webhooks |
+| `building-blocks/references/github-actions-workflows.md` | Setting up CI/CD with GitHub Actions |
+| `building-blocks/references/sentry-setup.md` | Implementing error tracking and logging |
+| `building-blocks/references/image-optimization.md` | Optimizing images, fonts, and bundles |

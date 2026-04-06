@@ -1,0 +1,90 @@
+{
+  "mode": "GREENFIELD",
+  "version": "1.1",
+  "tests": [
+    {
+      "id": "GF-01",
+      "name": "SaaS with payments from DDS",
+      "prompt": "User provides a DDS for a SaaS project management tool with Stripe billing, team accounts, and a dashboard. Stack preference: Next.js + Supabase.",
+      "expected_behavior": "Skips Phase 1-2 questions that DDS covers. Goes to Phase 3 with architecture proposal.",
+      "assertions": [
+        "Blueprint includes Stripe webhook handler in directory structure",
+        "Data model includes subscription_status field on users",
+        "Build order has Stripe step after auth step",
+        "Section 8 (Auth) includes role-based permissions for teams",
+        "CLAUDE.md includes The Foreman rules",
+        "Blueprint includes rate limiting on auth routes",
+        "Section 4 includes Mermaid ER diagram"
+      ]
+    },
+    {
+      "id": "GF-02",
+      "name": "Marketing landing page - fast track",
+      "prompt": "User says: 'Build me a landing page for my SaaS. Just build it.' No DDS provided.",
+      "expected_behavior": "Fast-track mode: asks only 3 essential questions, uses smart defaults (Astro + Tailwind).",
+      "assertions": [
+        "Asks maximum 3 questions before proposing architecture",
+        "Proposes Astro (not Next.js) as framework",
+        "Blueprint includes SEO section with meta tags, sitemap, OG images",
+        "Build order starts with scaffolding, ends with deploy",
+        "No database section (or marked N/A)",
+        "No auth section (or marked N/A)"
+      ]
+    },
+    {
+      "id": "GF-03",
+      "name": "Mobile app with backend",
+      "prompt": "User wants a mobile app for restaurant reservations. iOS and Android. Needs a backend API.",
+      "expected_behavior": "Detects hybrid: mobile-app + api-backend. Reads hybrid-patterns.md.",
+      "assertions": [
+        "Identifies as hybrid project",
+        "Proposes Expo/React Native for mobile",
+        "Includes API backend in the architecture",
+        "Build order builds API first, then mobile app",
+        "Includes push notifications in roadmap",
+        "Monorepo or separate directory structure proposed"
+      ]
+    },
+    {
+      "id": "GF-04",
+      "name": "AI chat application",
+      "prompt": "User wants to build a document Q&A tool. Upload PDFs, ask questions, get answers with source citations.",
+      "expected_behavior": "Classifies as ai-ml-app archetype. Includes RAG pipeline.",
+      "assertions": [
+        "Identifies ai-ml-app archetype",
+        "Includes vector database in stack (Pinecone or pgvector)",
+        "Data model includes embeddings/chunks table",
+        "Build order includes RAG pipeline step",
+        "Mentions chunking strategy with overlap",
+        "Includes token usage tracking"
+      ]
+    },
+    {
+      "id": "GF-05",
+      "name": "PHP Laravel project",
+      "prompt": "User says: 'I want a SaaS for invoice management. Must be Laravel + MySQL because my hosting is A2 Hosting with PHP.'",
+      "expected_behavior": "Respects tech constraint. Uses Laravel stack, not Next.js.",
+      "assertions": [
+        "Does NOT propose Next.js or Node.js",
+        "Uses Laravel as backend framework",
+        "Uses MySQL as database",
+        "Directory structure follows Laravel conventions",
+        "Uses Eloquent as ORM",
+        "Deployment targets A2 Hosting, not Vercel"
+      ]
+    },
+    {
+      "id": "GF-06",
+      "name": "Audit catches missing fields from DDS",
+      "prompt": "User provides DDS with 5 specific modules. Blueprint is generated.",
+      "expected_behavior": "Phase 5 Audit verifies all 5 modules are in the blueprint.",
+      "assertions": [
+        "Audit report is presented as a table",
+        "Each DDS module is checked against blueprint",
+        "Missing modules flagged as High severity",
+        "Mismatched fields flagged as Medium severity",
+        "Verdict is PASS, PASS WITH NOTES, or NEEDS REVISION"
+      ]
+    }
+  ]
+}

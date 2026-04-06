@@ -28,6 +28,8 @@ Include any of these if you have them:
 
 ### Phase 1: UNDERSTAND
 
+**Check if `PROJECT.context.md` exists.** If it does, read it first — it tells you the stack, architecture, and key file paths so you know where to look. If it doesn't exist, that's fine — just read what's needed for the fix.
+
 Read the user's description. Then:
 
 1. **Read the file(s) the user mentions** — understand the current code
