@@ -46,16 +46,19 @@ Cross every element from the source document against the blueprint:
 
 ### 2b. Security Baseline (mandatory — fail the audit if missing)
 
-| Check | How to verify |
-|-------|--------------|
-| RLS is implemented | Build order has a step for RLS right after auth. Mechanism documented (scope, helper, policy). |
-| RLS is in Non-Negotiable Rules | Rule #1 in CLAUDE.md Section 15 mentions user_id filtering |
-| CORS is configured | Environment setup or deployment section specifies allowed origins |
-| Security headers are set | All 7 headers listed in deployment section or in a middleware/config file |
-| RLS exemptions are documented | If any table is NOT filtered by user_id, it's explicitly listed with reason |
-| Security baseline is early in build order | Appears as Step 3 or earlier, NOT as a "polish" step at the end |
+| # | Check | How to verify |
+|---|-------|--------------|
+| 1 | RLS is implemented | Build order has a step for RLS right after auth. Mechanism documented (scope, helper, policy). |
+| 2 | CORS is configured | Environment setup or deployment section specifies allowed origins. Not `*` with credentials. |
+| 3 | Security headers are set | All 7 headers listed in deployment section or in a middleware/config file |
+| 4 | Rate limiting on auth | Login/register endpoints limited to 5 req/min per IP. Mechanism documented. |
+| 5 | API keys in .env | All secrets in .env (not hardcoded). `.env.example` exists. Startup validation documented. |
+| 6 | SQL injection prevention | All queries use parameterized statements. No string concatenation with user input in SQL. |
+| - | RLS exemptions documented | Tables not filtered by user_id are explicitly listed with reason |
+| - | Security baseline is early in build order | Appears as Step 3 or earlier, NOT as a "polish" step at the end |
+| - | Non-Negotiable Rules include all 6 points | CLAUDE.md Section 15 lists all 6 security baseline requirements |
 
-**If any of these checks fail, the verdict is NEEDS REVISION — not PASS WITH NOTES.**
+**If any of checks 1-6 fail, the verdict is NEEDS REVISION — not PASS WITH NOTES.**
 
 ### 3. Completeness
 

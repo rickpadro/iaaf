@@ -44,7 +44,34 @@ Every database query that returns or modifies user data MUST filter by the authe
 | `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` | Unwanted device access |
 | `X-XSS-Protection` | `1; mode=block` | XSS (legacy browsers) |
 
-→ For implementation code per stack, load `references/security-baseline.md`.
+### Rate Limiting (point 4)
+
+| Endpoint | Limit |
+|----------|-------|
+| Login / Register / Reset | 5 req/min per IP |
+| Authenticated APIs | 100 req/min per user |
+| Public APIs | 20 req/min per IP |
+| File uploads | 10 req/min per user |
+| AI/LLM endpoints | 5 req/min per user |
+
+Response: HTTP 429 with `Retry-After` header.
+
+### API Keys in Environment Variables (point 5)
+
+- `.env` with all secrets, in `.gitignore`. Never in code, DB, or logs.
+- `.env.example` committed with placeholders.
+- Validate at startup — if a critical key is missing, app refuses to start (fail fast).
+- Different keys per environment (dev, staging, production).
+
+### SQL Injection Prevention (point 6)
+
+- **NEVER** concatenate user input into SQL strings.
+- **ALWAYS** use parameterized queries / prepared statements.
+- **Validate input type** before the query (cast to int, validate email format, regex for patterns).
+- **PHP vanilla is highest risk** — developers write SQL manually. Always `prepare()` + `bind_param()`.
+- ORMs (Eloquent, Prisma, Drizzle) are safe by default. Only risk: `DB::raw()` / `$queryRawUnsafe()`.
+
+→ For implementation code per stack (all 6 points), load `references/security-baseline.md`.
 
 ---
 

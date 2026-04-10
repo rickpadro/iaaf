@@ -97,9 +97,11 @@ These rules optimize how you work. Follow them at all times during the build.
 1. **Row Level Security:** Every database query that returns or modifies user data MUST filter by authenticated user ID. No exceptions.
 2. **Security Headers:** All 7 security headers configured (CSP, X-Content-Type-Options, X-Frame-Options, HSTS, Referrer-Policy, Permissions-Policy, X-XSS-Protection).
 3. **CORS:** Configured with whitelist of allowed origins. Never `*` with credentials.
-4. {Rule 4 — project-specific}
-5. {Rule 5 — project-specific}
-6. {Rule 6 — project-specific}
+4. **Rate Limiting:** Auth endpoints: 5 req/min per IP. API endpoints: 100 req/min per user. Return 429 with Retry-After.
+5. **API Keys in .env:** All secrets in environment variables. Never hardcoded. `.env` in `.gitignore`. Validate at startup.
+6. **SQL Injection:** Every query uses parameterized statements. Never concatenate user input into SQL.
+7. {Rule 7 — project-specific}
+8. {Rule 8 — project-specific}
 ```
 
 ---

@@ -50,12 +50,16 @@ Use this checklist during Phase 4 (Generate) before saving the blueprint. Verify
 
 ## Security Baseline (required for ALL projects with auth + database)
 
-- [ ] **Row Level Security:** Build order includes RLS implementation immediately after auth setup
+- [ ] **1. Row Level Security:** Build order includes RLS implementation immediately after auth setup
 - [ ] **RLS mechanism documented:** How user_id filtering works in this stack (global scope, helper, policy, RLS)
 - [ ] **RLS exemptions documented:** Tables that are intentionally NOT filtered by user_id (and why)
-- [ ] **CORS configured:** Allowed origins whitelist defined in environment setup
-- [ ] **Security headers:** All 7 headers listed in deployment or environment setup section
-- [ ] **Non-Negotiable Rules include RLS, CORS, and headers** as the first 3 rules in CLAUDE.md
+- [ ] **2. CORS configured:** Allowed origins whitelist defined in environment setup
+- [ ] **3. Security headers:** All 7 headers listed in deployment or environment setup section
+- [ ] **4. Rate limiting:** Auth endpoints limited to 5 req/min per IP. API endpoints limited per user.
+- [ ] **Rate limiting mechanism documented:** How it works in this stack (middleware, table, Redis)
+- [ ] **5. API keys in .env:** All secrets in .env, .env.example committed, validation at startup documented
+- [ ] **6. SQL injection prevention:** All queries use parameterized statements. No string concatenation with user input.
+- [ ] **Non-Negotiable Rules include all 6 security baseline points** in CLAUDE.md
 
 ## Required for Projects WITH Payments
 
