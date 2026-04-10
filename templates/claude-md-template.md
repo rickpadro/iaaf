@@ -94,11 +94,12 @@ These rules optimize how you work. Follow them at all times during the build.
 
 ## Non-Negotiable Rules
 
-1. {Rule 1}
-2. {Rule 2}
-3. {Rule 3}
-4. {Rule 4}
-5. {Rule 5}
+1. **Row Level Security:** Every database query that returns or modifies user data MUST filter by authenticated user ID. No exceptions.
+2. **Security Headers:** All 7 security headers configured (CSP, X-Content-Type-Options, X-Frame-Options, HSTS, Referrer-Policy, Permissions-Policy, X-XSS-Protection).
+3. **CORS:** Configured with whitelist of allowed origins. Never `*` with credentials.
+4. {Rule 4 — project-specific}
+5. {Rule 5 — project-specific}
+6. {Rule 6 — project-specific}
 ```
 
 ---

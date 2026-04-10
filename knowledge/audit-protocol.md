@@ -44,6 +44,19 @@ Cross every element from the source document against the blueprint:
 | Dependencies in Section 11 match stack in Section 2 | Every technology in the stack has corresponding packages listed |
 | CLAUDE.md in Section 15 is consistent with the full blueprint | Stack, patterns, rules, design system — all must match |
 
+### 2b. Security Baseline (mandatory — fail the audit if missing)
+
+| Check | How to verify |
+|-------|--------------|
+| RLS is implemented | Build order has a step for RLS right after auth. Mechanism documented (scope, helper, policy). |
+| RLS is in Non-Negotiable Rules | Rule #1 in CLAUDE.md Section 15 mentions user_id filtering |
+| CORS is configured | Environment setup or deployment section specifies allowed origins |
+| Security headers are set | All 7 headers listed in deployment section or in a middleware/config file |
+| RLS exemptions are documented | If any table is NOT filtered by user_id, it's explicitly listed with reason |
+| Security baseline is early in build order | Appears as Step 3 or earlier, NOT as a "polish" step at the end |
+
+**If any of these checks fail, the verdict is NEEDS REVISION — not PASS WITH NOTES.**
+
 ### 3. Completeness
 
 | Check | How to verify |

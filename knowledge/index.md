@@ -48,6 +48,7 @@ Read this file FIRST in Phase 2 and Phase 4 to decide which files to load. Only 
 
 | File | When to Load |
 |------|-------------|
+| `building-blocks/references/security-baseline.md` | **ALWAYS** — RLS, CORS, and security headers implementation per stack. Load in Phase 4 (Generate) or Phase 2 (Diagnose). |
 | `building-blocks/references/stripe-webhook-patterns.md` | Implementing Stripe payment webhooks |
 | `building-blocks/references/github-actions-workflows.md` | Setting up CI/CD with GitHub Actions |
 | `building-blocks/references/sentry-setup.md` | Implementing error tracking and logging |

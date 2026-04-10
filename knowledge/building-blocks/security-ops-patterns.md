@@ -1,10 +1,52 @@
 # Building Block: Security & Observability Patterns
 
-Covers: OWASP basics, CORS, CSP, rate limiting, input validation, secrets management, error tracking, logging, monitoring, and health checks.
+Covers: Row Level Security, CORS, security headers, rate limiting, input validation, secrets management, error tracking, logging, monitoring, and health checks.
 
 ---
 
-## SECURITY
+## SECURITY BASELINE (mandatory for all projects)
+
+These three are NON-OPTIONAL. Every project must implement them. Detailed implementation per stack in `references/security-baseline.md`.
+
+### Row Level Security (RLS)
+
+Every database query that returns or modifies user data MUST filter by the authenticated user's ID.
+
+| Stack | How |
+|-------|-----|
+| PHP vanilla | `WHERE user_id = $_SESSION['user_id']` in every query. Create helper function. |
+| Laravel | Global Scope trait `OwnedByUser` on every user-owned model |
+| Next.js + Prisma/Drizzle | Wrapper function that injects userId into every query |
+| Supabase | PostgreSQL RLS policies on every table |
+
+**Test:** Change the ID in a request (`/api/projects/5` → `/api/projects/6`). If you see another user's data, RLS is broken.
+
+**Exempt tables:** Configuration, lookups, and admin-only tables. Document each exemption explicitly.
+
+### CORS
+
+| Scenario | Configuration |
+|----------|--------------|
+| Frontend + API same domain | Not needed (same-origin) |
+| API consumed by separate frontend | Whitelist frontend domain. Never `*` with credentials. |
+| Development | Add `localhost` variants |
+| Production | Only exact production domains |
+
+### Security Headers (7 required)
+
+| Header | Value | Prevents |
+|--------|-------|----------|
+| `Content-Security-Policy` | `default-src 'self'` + adjustments per project | XSS, script injection |
+| `X-Content-Type-Options` | `nosniff` | MIME sniffing |
+| `X-Frame-Options` | `DENY` | Clickjacking |
+| `Strict-Transport-Security` | `max-age=63072000; includeSubDomains` | HTTPS downgrade |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` | URL leaking |
+| `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` | Unwanted device access |
+| `X-XSS-Protection` | `1; mode=block` | XSS (legacy browsers) |
+
+→ For implementation code per stack, load `references/security-baseline.md`.
+
+---
 
 ### OWASP Top Risks by Project Type
 

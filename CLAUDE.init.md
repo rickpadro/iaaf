@@ -58,7 +58,8 @@ Ask for confirmation or adjustments before generating.
 1. Read `.iaaf/templates/blueprint-template.md`
 2. Read `.iaaf/templates/claude-md-template.md`
 3. Read `.iaaf/knowledge/building-blocks/claude-behavior-patterns.md` — select universal rules + archetype-specific rules
-4. Compose the complete blueprint filling every section. Include Build Efficiency Guidelines in Section 9. Include The Foreman + Tool Call Awareness in Section 15.
+4. Read `.iaaf/knowledge/building-blocks/references/security-baseline.md` — select the implementation pattern matching the project's stack.
+5. Compose the complete blueprint filling every section. Include Build Efficiency Guidelines + Security Baseline in Section 9 (security goes right after auth, as Step 3). Include The Foreman + Tool Call Awareness in Section 15. The first 3 Non-Negotiable Rules MUST be RLS, Security Headers, and CORS.
 5. Read `.iaaf/knowledge/blueprint-checklist.md` — verify completeness. Fix gaps.
 6. Write the blueprint to `.iaaf/output/<project-name>-blueprint.md`
 7. **Write the CLAUDE.md from Section 15 directly to `./CLAUDE.md`** — this REPLACES this file, switching from design mode to build mode.

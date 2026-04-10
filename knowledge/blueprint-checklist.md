@@ -48,6 +48,15 @@ Use this checklist during Phase 4 (Generate) before saving the blueprint. Verify
 - [ ] Auth provider webhook handler included in directory structure (if using Clerk/external)
 - [ ] Auth flow diagram included in Section 4b
 
+## Security Baseline (required for ALL projects with auth + database)
+
+- [ ] **Row Level Security:** Build order includes RLS implementation immediately after auth setup
+- [ ] **RLS mechanism documented:** How user_id filtering works in this stack (global scope, helper, policy, RLS)
+- [ ] **RLS exemptions documented:** Tables that are intentionally NOT filtered by user_id (and why)
+- [ ] **CORS configured:** Allowed origins whitelist defined in environment setup
+- [ ] **Security headers:** All 7 headers listed in deployment or environment setup section
+- [ ] **Non-Negotiable Rules include RLS, CORS, and headers** as the first 3 rules in CLAUDE.md
+
 ## Required for Projects WITH Payments
 
 - [ ] Pricing model defined (freemium, flat, per-seat, usage-based)

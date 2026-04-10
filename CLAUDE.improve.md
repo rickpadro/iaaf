@@ -105,7 +105,8 @@ Check systematically. **When you find an issue, actively load the corresponding 
 
 | Category | What to check | If issue found → READ |
 |----------|--------------|----------------------|
-| **Security** | Input validation, auth patterns, rate limiting, CORS, secrets management, SQL injection | → `.iaaf/knowledge/building-blocks/security-ops-patterns.md` |
+| **Security Baseline** | **RLS: every query filters by user_id?** CORS configured? All 7 security headers present? This is HIGH severity if missing. | → `.iaaf/knowledge/building-blocks/security-ops-patterns.md` + `references/security-baseline.md` |
+| **Security Advanced** | Input validation, rate limiting, secrets management, SQL injection vectors | → `.iaaf/knowledge/building-blocks/security-ops-patterns.md` |
 | **Performance** | N+1 queries, missing indexes, large bundle, unoptimized images, missing caching | → `.iaaf/knowledge/building-blocks/performance-patterns.md` |
 | **Auth** | Weak auth, missing middleware, no role-based access, session misconfiguration | → `.iaaf/knowledge/building-blocks/auth-patterns.md` |
 | **Database** | Missing indexes, no migrations, no conventions, schema issues | → `.iaaf/knowledge/building-blocks/database-patterns.md` |

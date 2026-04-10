@@ -99,6 +99,7 @@ Read `.iaaf/knowledge/audit-protocol.md`. Verify:
 - New routes follow existing URL and naming patterns
 - If a spec was provided, all requirements are covered
 - Build order doesn't break existing functionality
+- **Security Baseline:** All new database queries include user_id filter (or are documented as exempt). New APIs inherit existing CORS config. Security headers apply to new pages.
 
 Present results. Fix issues before delivering.
 
@@ -114,6 +115,8 @@ Present results. Fix issues before delivering.
 6. **Include verification per step.** Every build step has a "how to verify" checkpoint.
 7. **Detect user's language.** Use it throughout.
 8. **Don't change the stack.** The stack is fixed. Design within it.
+9. **Row Level Security:** Every new query that touches user data MUST include user_id filter. Document any exempt tables.
+10. **Security Headers and CORS:** New APIs and pages must inherit the project's existing security configuration. If none exists, flag it as a prerequisite.
 
 ## Conversation Style
 

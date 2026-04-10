@@ -191,15 +191,26 @@ Each step follows this execution pattern to minimize wasted effort and API turns
 4. **TEST** once — if tests pass, move to the next step immediately.
 5. **Do not refactor, polish, or improve passing code.** Move forward.
 
+### Security Baseline (mandatory — implement early, right after auth)
+Every project MUST include these three before building features:
+1. **Row Level Security:** Every query that touches user data includes `user_id` filter. Create a helper/scope/policy. Test by attempting to access another user's data via ID manipulation.
+2. **CORS:** Configure allowed origins. Whitelist only your frontend domain(s). Never `*` with credentials.
+3. **Security Headers:** Add all 7 required headers (CSP, X-Content-Type-Options, X-Frame-Options, HSTS, Referrer-Policy, Permissions-Policy, X-XSS-Protection).
+
+→ Implementation per stack: load `knowledge/building-blocks/references/security-baseline.md`
+
 ### Steps
 
 **Step 1: Project Scaffolding**
 {Exact commands to run, what gets set up}
 
-**Step 2: {Next logical step}**
+**Step 2: {Next logical step — usually Database}**
 {What to build, which files to create, dependencies on previous steps}
 
-**Step 3: {Continue...}**
+**Step 3: Auth + Security Baseline**
+{Set up auth + immediately implement RLS, CORS, and security headers. These are NOT a separate "security step" at the end — they go in right after auth because every subsequent step depends on them being in place.}
+
+**Step 4+: {Continue with features...}**
 {...}
 
 {Continue for 10-15 steps covering the complete build from zero to deployed.}
